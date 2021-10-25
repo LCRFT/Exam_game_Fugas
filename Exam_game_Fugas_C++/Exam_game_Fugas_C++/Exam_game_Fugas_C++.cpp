@@ -8,6 +8,12 @@ class Player
 public:
     int Id,Rank;
     std::string Name;
+    Player(int ID_Player, std::string Name_Player,int Rank_Player)
+    {
+        Id = ID_Player;
+        Name = Name_Player;
+        Rank = Rank_Player;
+    }
 };
 
 class Hero
@@ -26,69 +32,62 @@ public:
 
 class PlayerManager
 {
+private:
+    std::vector<Player> new_player;
 public:
-    Player CreatePlayer(int Player_Id, std::string Player_Name, int Player_Rank)
+    void CreatePlayer(int Player_Id, std::string Player_Name, int Player_Rank)
     {
-        Player new_player;
-        new_player.Id = Player_Id;
-        new_player.Name = Player_Name;
-        new_player.Rank = Player_Rank;
-        return new_player;
+
+        new_player.push_back(Player(Player_Id, Player_Name, Player_Rank));
     }
 
-    void GetPlayerByName(std::vector<Player> new_player, std::string Searched_name)
+
+    Player* GetPlayerByName(std::string Searched_name)
     {
-        for (int i = 0; i < new_player.size(); ++i)
+        for (auto& player:new_player )
         {
-            if (new_player[i].Name == Searched_name)
+            if (player.Name == Searched_name)
             {
-                std::cout << "Id:" << new_player[i].Id << std::endl << "Name:" << new_player[i].Name << std::endl << "Rank:" << new_player[i].Rank << std::endl;
+                return &player;
             }
         }
+        return nullptr;
     }
     
-    void GetPlayerById(Player new_player[], int Searched_Id)
+   Player* GetPlayerById(int Searched_Id)
     {
-        for (int i = 0; i <= 10; ++i)
+        for (auto& player : new_player)
         {
-            if (new_player[i].Id == Searched_Id)
+            if (player.Id == Searched_Id)
             {
-                std::cout << "Id:" << new_player[i].Id << std::endl << "Name:" << new_player[i].Name << std::endl << "Rank:" << new_player[i].Rank << std::endl;
+                return &player;
             }
         }
+        return nullptr;
     }
 
-    void DeletePlayer(std::vector<Player> new_player, int Delete_Id)
+    void DeletePlayer(int Delete_Id)
     {
-        for (int i = 0; i <= 10; ++i)
-        {
-            if (new_player[i].Id == Delete_Id)
-            {
-                std::vector<int>::iterator it;
-                std::vector <int> ::iterator = new_player.begin();
-                it = new_player.begin();
-                new_player.erase(it);
-                new_player[i].Name ="";
-                new_player[i].Rank = 0;
-                std::cout << "Id:" << new_player[i].Id << std::endl << "Name:" << new_player[i].Name << std::endl << "Rank:" << new_player[i].Rank << std::endl;
-            }
-        }
+        new_player.erase(new_player.begin() + Delete_Id);
     }
 
 };
 
 int main()
 {
-    std::vector<Player> new_player;
-    
     PlayerManager new_Player_Manager;
 
-    new_player.push_back(new_Player_Manager.CreatePlayer(1, "Misha", 7000));
-    new_player.push_back(new_Player_Manager.CreatePlayer(2, "Misha", 7000));
-    new_player.push_back(new_Player_Manager.CreatePlayer(3, "Misha", 7000));
+    new_Player_Manager.CreatePlayer(1, "Misha", 7000);
+    
+    //new_player.push_back(new_Player_Manager.CreatePlayer(2, "Misha", 7000));
+    //new_player.push_back(new_Player_Manager.CreatePlayer(3, "Misha", 7000));
 
 
-    new_Player_Manager.GetPlayerByName(new_player, "Misha");
+    auto player=new_Player_Manager.GetPlayerByName("Misha");
+    if (player)
+    {
+        std::cout << "Id:" << player->Id << std::endl << "Name:" << player->Name << std::endl << "Rank:" << player->Rank << std::endl;
+    }
 
    
     return 0;
