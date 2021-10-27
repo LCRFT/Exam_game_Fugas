@@ -48,6 +48,7 @@ public:
         {
             if (player.Name == Searched_name)
             {
+                std::cout << "Id:" << player.Id << std::endl << "Name:" << player.Name << std::endl << "Rank:" << player.Rank << std::endl;
                 return &player;
             }
         }
@@ -60,6 +61,7 @@ public:
         {
             if (player.Id == Searched_Id)
             {
+                std::cout << "Id:" << player.Id << std::endl << "Name:" << player.Name << std::endl << "Rank:" << player.Rank << std::endl;
                 return &player;
             }
         }
@@ -68,7 +70,7 @@ public:
 
     void DeletePlayer(int Delete_Id)
     {
-        new_player.erase(new_player.begin() + Delete_Id);
+        new_player.erase(new_player.begin()+Delete_Id-1);
     }
 
 };
@@ -92,6 +94,7 @@ public:
         {
             if (hero.Name == Searched_name)
             {
+                std::cout << "Id:" << hero.Id << std::endl << "Name:" << hero.Name << std::endl << "HP:" << hero.HP << std::endl<<"Damage:"<<hero.Damage<<std::endl;
                 return &hero;
             }
         }
@@ -104,15 +107,16 @@ public:
         {
             if (hero.Id == Searched_Id)
             {
+                std::cout << "Id:" << hero.Id << std::endl << "Name:" << hero.Name << std::endl << "HP:" << hero.HP << std::endl << "Damage:" << hero.Damage << std::endl;
                 return &hero;
             }
         }
         return nullptr;
     }
 
-    void DeletePlayer(int Delete_Id)
+    void DeleteHero(int Delete_Id)
     {
-        hero_list.erase(hero_list.begin() + Delete_Id);
+        hero_list.erase(hero_list.begin() + Delete_Id-1);
     }
 
 };
@@ -122,20 +126,16 @@ int main()
     PlayerManager new_Player_Manager;
 
     new_Player_Manager.CreatePlayer(1, "Misha", 7000);
-    
-    auto player=new_Player_Manager.GetPlayerByName("Misha");
-    if (player)
-    {
-        std::cout << "Id:" << player->Id << std::endl << "Name:" << player->Name << std::endl << "Rank:" << player->Rank << std::endl;
-    }
+    new_Player_Manager.GetPlayerByName("Misha");
+    new_Player_Manager.DeletePlayer(1);
+    new_Player_Manager.GetPlayerById(1);
 
-    player= new_Player_Manager.GetPlayerById(1);
-    if (player)
-    {
-        std::cout << "Id:" << player->Id << std::endl << "Name:" << player->Name << std::endl << "Rank:" << player->Rank << std::endl;
-    }
+    HeroManager new_Hero_Manager;
 
-    //new_Player_Manager.DeletePlayer(1);
+    new_Hero_Manager.CreateHero(1, "Jack", 1000, 200);
+    new_Hero_Manager.GetHeroByName("Jack");
+    new_Hero_Manager.DeleteHero(1);
+    new_Hero_Manager.GetHeroById(1);
     return 0;
 }
 
