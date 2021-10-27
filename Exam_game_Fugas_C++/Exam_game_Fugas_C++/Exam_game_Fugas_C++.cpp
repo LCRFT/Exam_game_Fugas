@@ -73,23 +73,69 @@ public:
 
 };
 
+class HeroManager
+{
+private:
+    std::vector<Hero> hero_list;
+public:
+    int Id, HP, Damage;
+    std::string Name;
+    void CreateHero(int Hero_Id, std::string Hero_Name, int Hero_HP, int Hero_Damage)
+    {
+
+        hero_list.push_back(Hero(Hero_Id, Hero_Name, Hero_HP, Hero_Damage));
+    }
+
+    Hero* GetHeroByName(std::string Searched_name)
+    {
+        for (auto& hero : hero_list)
+        {
+            if (hero.Name == Searched_name)
+            {
+                return &hero;
+            }
+        }
+        return nullptr;
+    }
+
+    Hero* GetHeroById(int Searched_Id)
+    {
+        for (auto& hero : hero_list)
+        {
+            if (hero.Id == Searched_Id)
+            {
+                return &hero;
+            }
+        }
+        return nullptr;
+    }
+
+    void DeletePlayer(int Delete_Id)
+    {
+        hero_list.erase(hero_list.begin() + Delete_Id);
+    }
+
+};
+
 int main()
 {
     PlayerManager new_Player_Manager;
 
     new_Player_Manager.CreatePlayer(1, "Misha", 7000);
     
-    //new_player.push_back(new_Player_Manager.CreatePlayer(2, "Misha", 7000));
-    //new_player.push_back(new_Player_Manager.CreatePlayer(3, "Misha", 7000));
-
-
     auto player=new_Player_Manager.GetPlayerByName("Misha");
     if (player)
     {
         std::cout << "Id:" << player->Id << std::endl << "Name:" << player->Name << std::endl << "Rank:" << player->Rank << std::endl;
     }
 
-   
+    player= new_Player_Manager.GetPlayerById(1);
+    if (player)
+    {
+        std::cout << "Id:" << player->Id << std::endl << "Name:" << player->Name << std::endl << "Rank:" << player->Rank << std::endl;
+    }
+
+    //new_Player_Manager.DeletePlayer(1);
     return 0;
 }
 
