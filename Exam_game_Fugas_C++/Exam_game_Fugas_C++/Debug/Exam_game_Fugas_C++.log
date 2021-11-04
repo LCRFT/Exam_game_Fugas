@@ -1,0 +1,5 @@
+﻿  Exam_game_Fugas_C++.cpp
+D:\Документи\Фугас\Git\Exam_game_Fugas\Exam_game_Fugas_C++\Exam_game_Fugas_C++\Exam_game_Fugas_C++.cpp(188,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Документи\Фугас\Git\Exam_game_Fugas\Exam_game_Fugas_C++\Exam_game_Fugas_C++\Exam_game_Fugas_C++.cpp(362,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Документи\Фугас\Git\Exam_game_Fugas\Exam_game_Fugas_C++\Exam_game_Fugas_C++\Exam_game_Fugas_C++.cpp(256): warning C4715: 'Session::Get_Team': not all control paths return a value
+  Exam_game_Fugas_C++.vcxproj -> D:\Документи\Фугас\Git\Exam_game_Fugas\Exam_game_Fugas_C++\Debug\Exam_game_Fugas_C++.exe
