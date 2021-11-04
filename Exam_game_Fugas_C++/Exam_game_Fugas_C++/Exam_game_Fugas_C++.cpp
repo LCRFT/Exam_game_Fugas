@@ -196,12 +196,12 @@ public:
                 rand_Hero = rand() % rand_range;
 
                 Player insert_Player(i, new_player[rand_Player].Name, new_player[rand_Player].Rank);
-                new_player.erase(new_player.begin() + rand_Player);
                 new_team[j].new_team_list.struct_player_list.insert(new_team[j].new_team_list.struct_player_list.begin(), insert_Player);
+                new_player.erase(new_player.begin() + rand_Player);
 
                 Hero insert_Hero(i, new_hero[rand_Hero].Name, new_hero[rand_Hero].HP, new_hero[rand_Hero].Damage);
-                new_hero.erase(new_hero.begin() + rand_Hero);
                 new_team[j].new_team_list.struct_hero_list.insert(new_team[j].new_team_list.struct_hero_list.begin(), insert_Hero);
+                new_hero.erase(new_hero.begin() + rand_Hero);
 
                 --rand_range;
             }
@@ -307,12 +307,12 @@ public:
             for (auto& it_TeamOne : TeamOne.new_team_list.struct_player_list)
             {
                 it_TeamOne.Rank -= 25;
-                //std::cout << "Player name:" << it_TeamOne.Name << std::endl << "Player rank:" << it_TeamOne.Rank << std::endl << std::endl;
+               
             }
             for (auto& it_TeamTwo : TeamTwo.new_team_list.struct_player_list)
             {
                 it_TeamTwo.Rank += 25;
-                //std::cout << "Player name:" << it_TeamTwo.Name << std::endl << "Player rank:" << it_TeamTwo.Rank << std::endl << std::endl;
+                
             }
             
             Winner = TeamTwo;
