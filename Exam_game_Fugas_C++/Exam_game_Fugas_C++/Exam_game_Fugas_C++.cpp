@@ -171,7 +171,7 @@ private:
 public:
     Team Get_team(int team_num)
     {
-        return new_team[team_num];
+        return new_team[team_num-1];
     }
     TeamManager(std::string new_name1, std::string new_name2)
     {
@@ -181,7 +181,7 @@ public:
 
     void SetTeam(int num,Team set_Team)
     {
-        new_team[num] = set_Team;
+        new_team[num-1] = set_Team;
     }
     void GenerateNewTeam(std::vector<int> Player_id, std::vector<int> Hero_id,std::vector<Player> new_player, std::vector<Hero> new_hero)
     {
@@ -213,10 +213,10 @@ public:
     {
         PlayerManager PlayersInfo;
         HeroManager HeroInfo;
-        PlayersInfo.CreatePlayer(new_team[num].new_team_list.struct_player_list);
-        HeroInfo.CreateHero(new_team[num].new_team_list.struct_hero_list);
+        PlayersInfo.CreatePlayer(new_team[num-1].new_team_list.struct_player_list);
+        HeroInfo.CreateHero(new_team[num-1].new_team_list.struct_hero_list);
 
-        std::cout <<std::endl<< "Team name:" << new_team[num].Team_name << std::endl << "Team List:"<<std::endl<<std::endl;
+        std::cout <<std::endl<< "Team name:" << new_team[num-1].Team_name << std::endl << "Team List:"<<std::endl<<std::endl;
         for (int i = 1; i <= 5; ++i)
         {
             PlayersInfo.ShowPlayerInfo(i);
@@ -299,7 +299,7 @@ public:
         }
         else if (Hp_one == Hp_two)
         {
-            std::cout << "None of teams win" << std::endl;
+            std::cout << "Draw" << std::endl;
         }
         else
         {
@@ -336,22 +336,22 @@ public:
 
         TeamManager Teams("Blue", "Red");
         Teams.GenerateNewTeam(Players_Id, Heros_Id, gs_PlayerManager.player_list, gs_HeroManager.hero_list);
-        Teams.ShowTeamInfo(0);
         Teams.ShowTeamInfo(1);
+        Teams.ShowTeamInfo(2);
 
         Session new_session;
-        new_session.Set_TeamOne(Teams.Get_team(0));
-        new_session.Set_TeamTwo(Teams.Get_team(1));
+        new_session.Set_TeamOne(Teams.Get_team(1));
+        new_session.Set_TeamTwo(Teams.Get_team(2));
 
         new_session.Set_Time(new_Time);
         new_session.CalculateWinner();
         GameSessions.push_back(new_session);
 
-        Teams.SetTeam(0, new_session.Get_Team(1));
-        Teams.SetTeam(1, new_session.Get_Team(2));
+        Teams.SetTeam(1, new_session.Get_Team(1));
+        Teams.SetTeam(2, new_session.Get_Team(2));
 
-        Teams.ShowTeamInfo(0);
         Teams.ShowTeamInfo(1);
+        Teams.ShowTeamInfo(2);
 
     }
 
@@ -387,6 +387,7 @@ int main()
     
     GameManager MOBA;
     MOBA.PerformGameSession(new_Player_Manager, new_Hero_Manager,1);
+    MOBA.PerformGameSession(new_Player_Manager, new_Hero_Manager, 2);
 
     return 0;
 }
