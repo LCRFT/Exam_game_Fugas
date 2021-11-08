@@ -141,6 +141,16 @@
   <ItemGroup>
     <ClCompile Include="Exam_game_Fugas_C++.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Hero.h" />
+    <ClInclude Include="HeroManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="Session.h" />
+    <ClInclude Include="Team.h" />
+    <ClInclude Include="TeamManager.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
